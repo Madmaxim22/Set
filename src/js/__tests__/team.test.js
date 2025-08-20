@@ -1,4 +1,4 @@
-import { Team } from "../Team.js";
+import { Team } from '../Team.js';
 
 describe('Team', () => {
   class Character {
@@ -31,13 +31,16 @@ describe('Team', () => {
 
   test('если добавить несколько новых персонажей в команду', () => {
     team.addAll(hero1, hero2);
-    expect(team.toArray()).toEqual(expect.arrayContaining([hero1, hero2]));
+    expect(team.toArray()).toEqual(expect.arrayContaining([
+      hero1, hero2
+    ]));
   });
 
   test('если добавить в команду несолько одинаковых персонажей', () => {
     team.addAll(hero1, hero2);
-    team.addAll(hero2, hero3);
-    expect(team.toArray()).toEqual(expect.arrayContaining([hero1, hero2, hero3]));
+    expect(() => team.addAll(hero2, hero3)).toThrow(
+      'Этот персонаж уже в команде'
+    );
   });
 
   test('если конвертируем Set в массив', () => {
@@ -45,6 +48,8 @@ describe('Team', () => {
     team.add(hero2);
     const array = team.toArray();
     expect(Array.isArray(array)).toBe(true);
-    expect(array).toEqual([hero1, hero2]);
+    expect(array).toEqual([
+      hero1, hero2
+    ]);
   });
 });

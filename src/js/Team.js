@@ -4,7 +4,7 @@ export class Team {
   }
 
   add(character) {
-    if(this.members.has(character)) {
+    if (this.members.has(character)) {
       throw new Error('Этот персонаж уже в команде.');
     }
 
@@ -12,9 +12,7 @@ export class Team {
   }
 
   addAll(...characters) {
-    for (const character of characters) {
-      this.members.add(character);
-    }
+    characters.forEach((character) => this.add(character));
   }
 
   toArray() {
